@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Search = () => {
-  const [term, setTerm] = useState('');
+  const [debouncedTerm, setDebouncedTerm] = useState('hello');
   const [results, setResults] = useState([]);
 
   console.log('results:', results);
@@ -18,6 +18,9 @@ const Search = () => {
   //   console.log('i run after EVERY render and at initial render');
   // });
   useEffect(() => {
+    // (async () => {  // alternative
+    //   axios.get('adsfasdfasdf');
+    // })();
     const search = async () => {   // RECOMMENDED WAY BY REACT
       const { data } = (await axios.get('https://en.wikipedia.org/w/api.php', {
         params: {
@@ -25,19 +28,25 @@ const Search = () => {
           list: 'search',
           origin: '*',
           format: 'json',
-          srsearch: {term}
+          srsearch: {term: debouncedTerm}
         }
       }));
       setResults(data.query.search);
     };
-    if (term) {
+    if (debouncedTerm && !results.length) {
       search();
-    }
+    } else {
 
-    // (async () => {  // alternative
-    //   axios.get('adsfasdfasdf');
-    // })();
-  }, [term]);
+      const timeoutId = setTimeout(() => {
+        if (debouncedTerm) {
+          search();
+        }
+      }, 500);
+      return () => {
+        clearTimeout(timeoutId);
+      }
+    }
+  }, [debouncedTerm]);
 
   const renderedResults = results.map((result, index) => {
     return (
@@ -64,8 +73,8 @@ const Search = () => {
         <div className="field">
           <label htmlFor="">Enter Seerch Term</label>
           <input
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
+            value={debouncedTerm}
+            onChange={(e) => setDebouncedTerm(e.target.value)}
             type="text" className="input"
           />
         </div>
