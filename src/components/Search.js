@@ -1,7 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Search = () => {
   const [term, setTerm] = useState('default');
+
+  // console.log('I run with EVERY render');
+
+  // useEffect(() => {
+  //   console.log('i run after EVERY render and at initial render');
+  // });
+  // useEffect(() => {
+  //   console.log('i only run once')
+  // }, []);
+  // useEffect(() => {
+  //   console.log('i run after EVERY render and at initial render');
+  // });
+  useEffect(() => {
+    // const search = async () => {   RECOMMENDED WAY BY REACT
+    //   axios.get('asdjhsdkjhsf');
+    // }
+    (async () => {
+      axios.get('adsfasdfasdf');
+    })();
+  }, [term]);
 
   return (
     <div>
