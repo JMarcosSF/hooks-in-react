@@ -1,5 +1,27 @@
 import React from 'react';
+import Accordion from './components/Accordion';
+
+const items = [
+  {
+    title: 'Hello there',
+    content: 'I\'m just some randon content'
+  },
+  {
+    title: 'Hello again',
+    content: '2 I\'m just some randon content'
+  },
+  {
+    title: 'Hello and again',
+    content: '3 I\'m just some randon content'
+  },
+  {
+    title: 'Hello there finally',
+    content: '4 I\'m just some randon content'
+  },
+]
 
 export default () => {
-  return <h1>Widgets App</h1>;
+  return (<div>
+    <Accordion items={items}/>
+  </div>);
 };
