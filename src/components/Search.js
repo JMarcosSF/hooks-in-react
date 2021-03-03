@@ -16,12 +16,22 @@ const Search = () => {
   //   console.log('i run after EVERY render and at initial render');
   // });
   useEffect(() => {
-    // const search = async () => {   RECOMMENDED WAY BY REACT
-    //   axios.get('asdjhsdkjhsf');
-    // }
-    (async () => {
-      axios.get('adsfasdfasdf');
-    })();
+    const search = async () => {   // RECOMMENDED WAY BY REACT
+      axios.get('https://en.wikipedia.org/w/api.php', {
+        params: {
+          action: 'query',
+          list: 'search',
+          origin: '*',
+          format: 'json',
+          srsearch: {term}
+        }
+      });
+    };
+    search()
+
+    // (async () => {  // alternative
+    //   axios.get('adsfasdfasdf');
+    // })();
   }, [term]);
 
   return (
