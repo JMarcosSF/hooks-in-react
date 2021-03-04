@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Dropdown from './Dropdown';
-
+import Convert from './Convert';
+// Google Translate API Key
+// AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM
 const options = [
   {
     label: 'Afrikaans',
@@ -13,6 +15,10 @@ const options = [
   {
     label: 'Hindi',
     value: 'hi'
+  },
+  {
+    label: 'Japanese',
+    value: 'ja'
   },
 ]
 
@@ -33,8 +39,9 @@ const Translate = () => {
         selectedOption={lang}
         onSelectedChange={setLang}
         options={options}/>
+      <Convert language={lang.value} text={inputText} />
     </div>
   );
-}
+};
 
 export default Translate;
