@@ -32,7 +32,7 @@ const Convert = ({ language, text }) => {
         });
       setTranslation(data.data.translations[0].translatedText);
     }
-    const resp = translate();
+    translate();
   }, [language, debouncedText]);
   return (
     <div>

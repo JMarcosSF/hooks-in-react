@@ -5,7 +5,6 @@ const Search = () => {
   const [debouncedTerm, setDebouncedTerm] = useState('hello');
   const [results, setResults] = useState([]);
 
-  console.log('results:', results);
   // console.log('I run with EVERY render');
 
   // useEffect(() => {
@@ -33,18 +32,14 @@ const Search = () => {
       }));
       setResults(data.query.search);
     };
-    if (debouncedTerm && !results.length) {
-      search();
-    } else {
 
-      const timeoutId = setTimeout(() => {
-        if (debouncedTerm) {
-          search();
-        }
-      }, 500);
-      return () => {
-        clearTimeout(timeoutId);
+    const timeoutId = setTimeout(() => {
+      if (debouncedTerm) {
+        search();
       }
+    }, 500);
+    return () => {
+      clearTimeout(timeoutId);
     }
   }, [debouncedTerm]);
 
