@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import Accordion from './components/Accordion';
 // import Search from './components/Search';
 import Dropdown from './components/Dropdown';
+import Translate from './components/Translate';
 
 const items = [
   {
@@ -41,22 +42,28 @@ const options = [
   },
 ];
 
-export default () => {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [isShowDropdown, setIsShowDropdown] = useState(true);
+// export default () => {
+//   const [selectedOption, setSelectedOption] = useState(options[0]);
+//   const [isShowDropdown, setIsShowDropdown] = useState(true);
+//
+//   return (<div>
+//     {/*<Accordion items={items}/>*/}
+//     {/*<Search></Search>*/}
+//     <button onClick={() => {
+//       setIsShowDropdown(!isShowDropdown);
+//     }}>Toggle Dropdown</button>
+//     {isShowDropdown ?
+//       <Dropdown
+//       selectedOption={selectedOption}
+//       onSelectedChange={setSelectedOption}
+//       options={options}
+//     ></Dropdown> : null
+//     }
+//   </div>);
+// };
 
-  return (<div>
-    {/*<Accordion items={items}/>*/}
-    {/*<Search></Search>*/}
-    <button onClick={() => {
-      setIsShowDropdown(!isShowDropdown);
-    }}>Toggle Dropdown</button>
-    {isShowDropdown ?
-      <Dropdown
-      selectedOption={selectedOption}
-      onSelectedChange={setSelectedOption}
-      options={options}
-    ></Dropdown> : null
-    }
-  </div>);
-};
+export default () => {
+  return (
+    <Translate />
+  );
+}
