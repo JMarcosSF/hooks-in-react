@@ -6,14 +6,18 @@ const Dropdown = ({options, selectedOption, onSelectedChange}) => {
 
   // Setting an event listener
   useEffect(() => {
-    document.body.addEventListener('click', (e) => {
+    const onBodyClick = (e) => {
       // Using useRef as "ref" here to bypass setIsDropdownOpen
       // if the element is the most parent element in this component
       if (ref.current && ref.current.contains(e.target)) {
         return;
       }
-        setIsDropdownOpen(false);
-    }, { capture: true });
+      setIsDropdownOpen(false);
+      return () => {
+        document.body.removeEventListener('click', onBodyClick)
+      };
+    };
+    document.body.addEventListener('click', onBodyClick, { capture: true });
   }, []);
 
   const renderedOptions = options.map((option) => {
