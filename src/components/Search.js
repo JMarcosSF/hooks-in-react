@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {debounce} from 'lodash';
 
 const Search = () => {
   const [debouncedTerm, setDebouncedTerm] = useState('hello');
@@ -33,14 +34,13 @@ const Search = () => {
       setResults(data.query.search);
     };
 
-    const timeoutId = setTimeout(() => {
+    const debouncedSearch = debounce(() => {
       if (debouncedTerm) {
         search();
       }
     }, 500);
-    return () => {
-      clearTimeout(timeoutId);
-    }
+
+    debouncedSearch();
   }, [debouncedTerm]);
 
   const renderedResults = results.map((result, index) => {
