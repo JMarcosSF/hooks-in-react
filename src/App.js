@@ -4,6 +4,8 @@ import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
+import useDropDownOptions from './hooks/useDropDownOptions';
+
 
 const items = [
   {
@@ -44,8 +46,8 @@ const options = [
 ];
 
 const DD = () => {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [isShowDropdown, setIsShowDropdown] = useState(true);
+  useDropDownOptions()
+  const [options, selectedOption, setSelectedOption, isShowDropdown, setIsShowDropdown] = useDropDownOptions();
 
   return (<div>
     <button onClick={() => {
